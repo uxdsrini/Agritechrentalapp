@@ -118,6 +118,7 @@ function AppContent() {
           equipmentId={view.equipmentId}
           onBack={() => setView({ type: 'equipment-list' })}
           onVendorClick={navigateVendorDetail}
+          onNavigateToBookings={navigateBookings}
         />
         <BottomNav
           currentView={getCurrentNavView()}

@@ -9,14 +9,14 @@ interface EquipmentDetailPageProps {
   equipmentId: string;
   onBack: () => void;
   onVendorClick: (vendorId: string) => void;
+  onNavigateToBookings?: () => void;
 }
 
-export function EquipmentDetailPage({ equipmentId, onBack, onVendorClick }: EquipmentDetailPageProps) {
+export function EquipmentDetailPage({ equipmentId, onBack, onVendorClick, onNavigateToBookings }: EquipmentDetailPageProps) {
   const [equipment, setEquipment] = useState<Equipment | null>(null);
   const [vendor, setVendor] = useState<Vendor | null>(null);
   const [loading, setLoading] = useState(true);
   const [showBookingModal, setShowBookingModal] = useState(false);
-  const [bookingSuccess, setBookingSuccess] = useState(false);
 
   useEffect(() => {
     const loadData = async () => {
@@ -40,8 +40,6 @@ export function EquipmentDetailPage({ equipmentId, onBack, onVendorClick }: Equi
 
   const handleBookingSuccess = () => {
     setShowBookingModal(false);
-    setBookingSuccess(true);
-    setTimeout(() => setBookingSuccess(false), 5000);
   };
 
   if (loading) {
@@ -71,17 +69,6 @@ export function EquipmentDetailPage({ equipmentId, onBack, onVendorClick }: Equi
   return (
     <div className="min-h-screen bg-gray-50 pb-20">
       <Header onBack={onBack} />
-
-      {bookingSuccess && (
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
-          <div className="bg-green-50 border border-green-200 rounded-lg p-4 flex items-center">
-            <CheckCircle className="w-5 h-5 text-green-600 mr-3 flex-shrink-0" />
-            <p className="text-green-800">
-              Booking request submitted successfully! The vendor will contact you soon.
-            </p>
-          </div>
-        </div>
-      )}
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-8 mb-4 sm:mb-8">
@@ -193,6 +180,7 @@ export function EquipmentDetailPage({ equipmentId, onBack, onVendorClick }: Equi
           vendor={vendor}
           onClose={() => setShowBookingModal(false)}
           onSuccess={handleBookingSuccess}
+          onNavigateToBookings={onNavigateToBookings}
         />
       )}
     </div>
