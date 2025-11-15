@@ -101,16 +101,19 @@ export function HomePage({ onCategoryClick, onEquipmentClick, onViewAllEquipment
           <div className="flex items-center justify-between mb-6">
             <h3 className="text-2xl font-bold text-gray-800">Browse by Category</h3>
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
-            {categories.map((category) => (
-              <CategoryCard
-                key={category}
-                name={category}
-                icon={categoryIcons[category]}
-                count={getCategoryCount(category)}
-                onClick={() => onCategoryClick(category)}
-              />
-            ))}
+          <div className="overflow-x-auto pb-4 -mx-4 px-4 sm:mx-0 sm:px-0">
+            <div className="flex gap-4 sm:grid sm:grid-cols-3 lg:grid-cols-6 min-w-max sm:min-w-0">
+              {categories.map((category) => (
+                <div key={category} className="flex-shrink-0 w-40 sm:w-auto">
+                  <CategoryCard
+                    name={category}
+                    icon={categoryIcons[category]}
+                    count={getCategoryCount(category)}
+                    onClick={() => onCategoryClick(category)}
+                  />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 
@@ -127,7 +130,7 @@ export function HomePage({ onCategoryClick, onEquipmentClick, onViewAllEquipment
             </button>
           </div>
           {featuredEquipment.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
               {featuredEquipment.map((item) => {
                 const vendor = vendors.find(v => v.id === item.vendorId);
                 return (

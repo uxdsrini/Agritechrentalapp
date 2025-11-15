@@ -11,15 +11,15 @@ export function CategoryCard({ name, icon: Icon, count, onClick }: CategoryCardP
   return (
     <button
       onClick={onClick}
-      className="bg-white rounded-lg shadow-md hover:shadow-xl transition-all duration-300 p-6 text-center group hover:-translate-y-1"
+      className="bg-white rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 p-6 text-center group hover:scale-105 w-full"
     >
       <div className="flex justify-center mb-4">
         <div className="p-4 bg-green-50 rounded-full group-hover:bg-green-100 transition-colors">
-          <Icon className="w-8 h-8 text-green-600" />
+          <Icon className="w-8 h-8 text-green-600 stroke-[2]" />
         </div>
       </div>
-      <h3 className="text-lg font-semibold text-gray-800 mb-2">{name}</h3>
-      <p className="text-sm text-gray-500">{count} available</p>
+      <h3 className="text-lg font-bold text-gray-800 mb-1">{name}</h3>
+      <p className="text-sm text-gray-600">{count} available</p>
     </button>
   );
 }
